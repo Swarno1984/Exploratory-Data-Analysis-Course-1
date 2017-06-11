@@ -18,20 +18,20 @@ con$Sub_metering_3<-as.numeric(con$Sub_metering_3)
 #Strip Time and Date to a different variable
 dtm <- strptime(paste(con4$Date, con4$Time, sep=" "), "%Y-%m-%d %H:%M:%S") 
 
-par(mfrow = c(2, 2)) 
+par(mfrow=c(2,2), mar=c(4,4,2,1), oma=c(0,0,2,0))
 
 
 #Plot the Data
-plot(dtm, con$globalActivePower, type="l", xlab="", ylab="Global Active Power", cex=0.2)
+plot(dtm, con4$Global_active_power, type = "l", ylab ="Global Active Power(killowatts)", xlab = "",cex=0.8)
 
-plot(dtm, con$Voltage, type="l", xlab="datetime", ylab="Voltage")
+plot(dtm, con$Voltage, type="l", xlab="datetime", ylab="Voltage", cex=0.8)
 
-plot(dtm, con$Sub_metering_1, type="l", ylab="Energy Submetering", xlab="")
+plot(dtm, con$Sub_metering_1, type="l", ylab="Energy Submetering", xlab="", cex=0.8)
 lines(dtm, con$Sub_metering_2, type="l", col="red")
 lines(dtm, con$Sub_metering_3, type="l", col="blue")
-legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=, lwd=2.5, col=c("black", "red", "blue"), bty="o")
-
-plot(dtm, con$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
+legend("topright", col=c("black", "red", "blue"), lty=1, lwd=2, bty="n",
+       legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), cex=0.5)
+plot(dtm, con$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power", cex=0.8)
 
 
 #PNG file create
